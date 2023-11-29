@@ -12,6 +12,7 @@ library(shiny)
 source("ct-util.R")
 max_num_studies = 1000
 
+#' @import shiny
 # Define UI for application
 ui <- fluidPage(
 
