@@ -36,7 +36,7 @@ check_environment <- function() {
     library(duckdb)
     con <- dbConnect(duckdb(file.path("ctrialsgovdb/ctrialsgov.duckdb"),
                             read_only = TRUE))
-    }
+  }
 
   # Return any necessary objects or connections
   # For example, return the DuckDB connection if needed elsewhere
