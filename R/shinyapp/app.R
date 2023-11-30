@@ -38,8 +38,8 @@ ui <- fluidPage(
       checkboxGroupInput("allocation", "Allocation",
                          choices =
                            list("Not Applicable (Single Arm Trial)" = "N/A",
-                                        "Randomized" = "Randomized",
-                                        "Nonrandomized" = "Nonrandomized")),
+                                "Randomized" = "Randomized",
+                                "Nonrandomized" = "Nonrandomized")),
       sliderInput("max", "Maximum Number of Words:",
                   min = 1,  max = 300,  value = 100)
     ),
@@ -71,12 +71,12 @@ server <- function(input, output) {
       ret <- studies
     }
 
-    ret = ret |>
+    ret <- ret |>
       filter(source_class %in% !!input$source_class)
 
     ret |>
       head(max_num_studies) |>
-      collect()
+      dplyr::collect()
   })
 
   # output histogram for phases that clinical trials are categorized
@@ -102,7 +102,7 @@ server <- function(input, output) {
     wordcloud_rep <- repeatable(wordcloud)
     v <- get_studies() |>
       gettermmatrix()
-    wordcloud_rep(names(v), v, scale=c(4, 0.5), max.words = input$max,
+    wordcloud_rep(names(v), v, scale = c(4, 0.5), max.words = input$max,
                   colors = RColorBrewer::brewer.pal(8, "Dark2"))
   })
 

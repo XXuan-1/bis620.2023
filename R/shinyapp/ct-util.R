@@ -1,19 +1,19 @@
-library(dplyr)
-library(tidyr)
-library(purrr)
-library(DT)
-library(ggplot2)
-library(tm)
-library(wordcloud)
-library(memoise)
-library(NLP)
-library(rlang)
-library(tidyverse)
-library(RColorBrewer)
+# library(dplyr)
+# library(tidyr)
+# library(purrr)
+# library(DT)
+# library(ggplot2)
+# library(tm)
+# library(wordcloud)
+# library(memoise)
+# library(NLP)
+# library(rlang)
+# library(tidyverse)
+# library(RColorBrewer)
+#
 
-
-#' @title Query keywords from a database table.
-#' @description filter rows with specific query keywords
+#' Query keywords from a database table.
+#' filter rows with specific query keywords
 #' @param d the database table.
 #' @param kwds the keywords to look for.
 #' @param column the column to look for the keywords in.
@@ -24,7 +24,6 @@ library(RColorBrewer)
 #' @return a tibble including specific query information
 #' @importFrom dplyr filter paste0
 #' @export
-
 query_kwds <- function(d, kwds, column, ignore_case = TRUE, match_all = FALSE) {
   kwds <- kwds[kwds != ""]
   kwds <- paste0("%", kwds, "%") |>
@@ -211,9 +210,10 @@ gettermmatrix <- memoise(function(x) {
     mycorpus <- tm_map(myCorpus, removePunctuation)
     mycorpus <- tm_map(myCorpus, removeNumbers)
     mycorpus <- tm_map(myCorpus, removeWords,
-                      c(stopwords("SMART"), "thy", "thou", "thee", "the", "and", "but"))
+                      c(stopwords("SMART"), "thy", "thou", "thee", "the",
+                        "and", "but"))
     mydtm <- TermDocumentMatrix(mycorpus,
-                               control = list(minWordLength = 1))
+                                control = list(minWordLength = 1))
     m <- as.matrix(mydtm)
     sort(rowSums(m), decreasing = TRUE)
   }
