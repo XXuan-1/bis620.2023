@@ -16,7 +16,7 @@ query_kwds <- function(d, kwds, column, ignore_case = TRUE, match_all = FALSE) {
     gsub("'", "''", x = _)
   if (ignore_case) {
     like <- " ilike "
-  } else{
+  } else {
     like <- " like "
   }
   query <- paste(

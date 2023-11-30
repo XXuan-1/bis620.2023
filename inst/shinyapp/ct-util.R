@@ -13,7 +13,7 @@ library(rlang)
 library(tidyverse)
 library(RColorBrewer)
 
-checkAndSetupEnvironment <- function() {
+check_environment <- function() {
   local_db_path <- "~/bis620.2023/inst/shinyapp/ctrialsgovdb/ctrialsgov.duckdb"
 
   if (file.exists(local_db_path)) {
@@ -24,10 +24,11 @@ checkAndSetupEnvironment <- function() {
     ))
     # Perform operations with local DuckDB connection
   } else {
+
     # Local file does not exist, install package from GitHub
-      if (!requireNamespace("devtools", quietly = TRUE)) {
-        install.packages("devtools")
-      }
+    if (!requireNamespace("devtools", quietly = TRUE)) {
+      install.packages("devtools")
+     }
 
     devtools::install_github("presagia-analytics/ctrialsgov")
 
@@ -36,7 +37,7 @@ checkAndSetupEnvironment <- function() {
     con <- dbConnect(duckdb(
       file.path("ctrialsgovdb/ctrialsgov.duckdb"),
       read_only = TRUE
-    ))
+      ))
     }
 
   # Return any necessary objects or connections
@@ -48,11 +49,12 @@ if (length(dbListTables(con)) == 0) {
   stop("Problem reading from connection.")
 }
 
-# Create the connection to a database and "studies", "conditions" and "designs" tables.
+# Create the connection to a database and "studies", "conditions" and
+# "designs" tables.
 
-studies = tbl(con, "studies")
-conditions = tbl(con, "conditions")
-designs = tbl(con, "designs")
+studies <- tbl(con, "studies")
+conditions <- tbl(con, "conditions")
+designs <- tbl(con, "designs")
 
 
 #' Query keywords from a database table.
@@ -73,7 +75,7 @@ query_kwds <- function(d, kwds, column, ignore_case = TRUE, match_all = FALSE) {
     gsub("'", "''", x = _)
   if (ignore_case) {
     like <- " ilike "
-  } else{
+  } else {
     like <- " like "
   }
   query <- paste(
@@ -253,7 +255,7 @@ gettermmatrix <- memoise(function(x) {
     mycorpus <- tm_map(mycorpus, removePunctuation)
     mycorpus <- tm_map(mycorpus, removeNumbers)
     mycorpus <- tm_map(mycorpus, removeWords,
-                      c(stopwords("SMART"), "thy", "thou", "thee", "the",
+                       c(stopwords("SMART"), "thy", "thou", "thee", "the",
                         "and", "but"))
     mydtm <- TermDocumentMatrix(mycorpus,
                                 control = list(minWordLength = 1))

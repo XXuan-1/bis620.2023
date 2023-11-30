@@ -18,7 +18,11 @@ Imports:
   purrr,
   tidyr,
   shiny,
-  memoise
+  memoise,
+  rlang,
+  tibble,
+  duckdb,
+  DBI
 Suggests: 
     knitr,
     rmarkdown,

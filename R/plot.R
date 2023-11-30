@@ -14,4 +14,4 @@ plot_accel <- function(x, x_var = "time") {
     ggplot(aes(x = !!as.symbol(x_var), y = Acceleration)) +
     geom_line() +
     facet_grid(Channel ~ .)
-  }
+}

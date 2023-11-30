@@ -61,7 +61,7 @@ ui <- fluidPage(
 
 # Define server logic required to draw graphs
 server <- function(input, output) {
-  con <- checkAndSetupEnvironment()
+  con <- check_environment()
 
   if (is.null(con)) {
     stop("Database connection not established.")
