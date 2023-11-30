@@ -4,7 +4,8 @@ Title: Functions and Data for the BIS620 (2023) Class
 Version: 0.1.0
 Author: Jiaxuan Sun
 Maintainer: The package maintainer <jiaxuan.sun@yale.edu>
-Description: Homework 4
+Description: Homework 4 including shiny app representing histograms and other 
+    graphs folowing specific manual queries.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
@@ -26,5 +27,5 @@ Suggests:
     vdiffr
 Config/testthat/edition: 3
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5.0)
 VignetteBuilder: knitr
