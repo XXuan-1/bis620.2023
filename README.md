@@ -5,7 +5,9 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/kaneplusplus/bis620.2023/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kaneplusplus/bis620.2023/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/XXuan-1/bis620.2023/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/XXuan-1/bis620.2023/actions/workflows/R-CMD-check.yaml)
+[![test-coverage](https://github.com/XXuan-1/bis620.2023/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/XXuan-1/bis620.2023/actions/workflows/test-coverage.yaml)
+[![lint](https://github.com/XXuan-1/bis620.2023/actions/workflows/lint.yaml/badge.svg)](https://github.com/XXuan-1/bis620.2023/actions/workflows/lint.yaml)
 <!-- badges: end -->
 
 The goal of bis620.2023 is to …
@@ -17,7 +19,7 @@ You can install the development version of bis620.2023 from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("kaneplusplus/bis620.2023")
+devtools::install_github("XXuan-1/bis620.2023")
 ```
 
 ## Example
