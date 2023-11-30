@@ -16,7 +16,10 @@ Imports:
   ggplot2,
   purrr,
   tidyr,
-  shiny
+  shiny,
+  rlang,
+  wordcloud,
+  RColorBrewer
 Suggests: 
     knitr,
     rmarkdown,

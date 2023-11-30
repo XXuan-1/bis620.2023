@@ -14,7 +14,8 @@
 #'
 #'
 #' @format ## `studies`
-#' A tibble with 474,199 rows and 70 columns, including nct_id, studies' submitted date, etc..
+#' A tibble with 474,199 rows and 70 columns, including nct_id,
+#' studies' submitted date, etc..
 #'
 "studies"
 
@@ -22,7 +23,8 @@
 #'
 #'
 #' @format ## `conditions`
-#' A tibble with 821,676 rows and 4 columns, including nct_id, id, conditions' name and corresponding lowercase.
+#' A tibble with 821,676 rows and 4 columns, including nct_id, id,
+#' conditions' name and corresponding lowercase.
 #'
 "conditions"
 
@@ -30,6 +32,7 @@
 #'
 #'
 #' @format ## `designs`
-#' A tibble with 469,656 rows and 14 columns, including nct_id, allocation ways, intervention model, etc..
+#' A tibble with 469,656 rows and 14 columns, including nct_id, allocation
+#' ways, intervention model, etc..
 #'
 "designs"

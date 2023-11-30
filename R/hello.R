@@ -8,5 +8,4 @@
 #' @export
 hello <- function(who = "world") {
   sprintf("Hello, %s!", who)
-  # paste0("Hello, ", who, "!")
 }

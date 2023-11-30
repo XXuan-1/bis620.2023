@@ -10,7 +10,7 @@
 library(shiny)
 
 source("ct-util.R")
-max_num_studies = 1000
+max_num_studies <- 1000
 
 #' @import shiny
 # Define UI for application
@@ -32,9 +32,12 @@ ui <- fluidPage(
                                  "Other" = "OTHER",
                                  "Other gov" = "OTHER_GOV",
                                  "Unknown" = "UNKNOWN")),
-      numericInput("num_conditions", "Number of the Most Frequent Conditions", value = 10),
+      numericInput("num_conditions",
+                   "Number of the Most Frequent Conditions",
+                   value = 10),
       checkboxGroupInput("allocation", "Allocation",
-                         choices = list("Not Applicable (Single Arm Trial)" = "N/A",
+                         choices =
+                           list("Not Applicable (Single Arm Trial)" = "N/A",
                                         "Randomized" = "Randomized",
                                         "Nonrandomized" = "Nonrandomized")),
       sliderInput("max", "Maximum Number of Words:",
@@ -57,15 +60,15 @@ ui <- fluidPage(
 # Define server logic required to draw graphs
 server <- function(input, output) {
 
-  get_studies = reactive({
+  get_studies <- reactive({
     if (input$brief_title_kw != "") {
-      si = input$brief_title_kw |>
+      si <- input$brief_title_kw |>
         strsplit(",") |>
         unlist() |>
         trimws()
-      ret = query_kwds(studies, si, "brief_title", match_all = TRUE)
+      ret <- query_kwds(studies, si, "brief_title", match_all = TRUE)
     } else {
-      ret = studies
+      ret <- studies
     }
 
     ret = ret |>
@@ -77,7 +80,7 @@ server <- function(input, output) {
   })
 
   # output histogram for phases that clinical trials are categorized
-  output$phase_Plot = renderPlot({
+  output$phase_Plot <- renderPlot({
     get_studies() |>
       create_phase_histogram_plot(input$allocation)
   })
@@ -89,18 +92,18 @@ server <- function(input, output) {
   })
 
   # output histogram for intervention model
-  output$design_Plot = renderPlot({
+  output$design_Plot <- renderPlot({
     get_studies() |>
       create_design_histogram(input$allocation)
   })
 
   # output word cloud
-  output$word_Plot = renderPlot({
-      wordcloud_rep <- repeatable(wordcloud)
-      v = get_studies() |>
-        getTermMatrix()
-      wordcloud_rep(names(v), v, scale=c(4,0.5), max.words = input$max,
-                    colors = brewer.pal(8, "Dark2"))
+  output$word_Plot <- renderPlot({
+    wordcloud_rep <- repeatable(wordcloud)
+    v <- get_studies() |>
+      gettermmatrix()
+    wordcloud_rep(names(v), v, scale=c(4, 0.5), max.words = input$max,
+                  colors = RColorBrewer::brewer.pal(8, "Dark2"))
   })
 
 }

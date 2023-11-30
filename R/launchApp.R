@@ -3,11 +3,10 @@
 #' This function starts the Shiny app included in the package.
 #'
 #' @export
-launchMyApp <- function() {
-  appDir <- system.file("shinyapp", package = "bis620.2023")
-  if (appDir == "") {
+launchmyapp <- function() {
+  appdir <- system.file("shinyapp", package = "bis620.2023")
+  if (appdir == "") {
     stop("Shiny app not found in the package")
   }
-  shiny::runApp(appDir)
+  shiny::runApp(appdir)
 }
-
