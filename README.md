@@ -33,6 +33,7 @@ Here are several snapshots of the displays under different selections.
 
 ``` r
 library(bis620.2023)
+launchmyapp()
 ```
 
 <img src="man/figures/shiny-example-1.png" width="100%" />

@@ -44,5 +44,6 @@ Here are several snapshots of the displays under different selections.
 
 ```{r example}
 library(bis620.2023)
+launchmyapp()
 ```
 
