@@ -36,7 +36,7 @@ library(bis620.2023)
 ```
 
 <img src="man/figures/shiny-example-1.png" width="100%" />
-<img src="man/figures/shiny-example-2.png" width="100%" />
+<img src="man/figures/shiny-example-2.jpg" width="100%" />
 <img src="man/figures/shiny-example-3.png" width="100%" />
 <img src="man/figures/shiny-example-4.png" width="100%" />
 
