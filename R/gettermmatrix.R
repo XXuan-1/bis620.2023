@@ -1,3 +1,7 @@
+#' Get Term Matrix
+#'
+#' Obtain a matrix used for the word cloud display.
+#'
 #' @title Word Frequency for Word Cloud
 #' @description  Get the frequency of words from the text.
 #' @param x the text.

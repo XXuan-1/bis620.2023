@@ -1,5 +1,7 @@
-#' @title Condition Histogram
-#' @description  Create a histogram of the conditions.
+#' Condition Histogram
+#'
+#' Create a histogram of the conditions.
+#'
 #' @param x the database table.
 #' @param num_conditions Number of most frequent conditions.
 #' @return A histogram of the most frequent conditions in a determined amount.

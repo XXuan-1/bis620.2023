@@ -1,9 +1,13 @@
-#' Check if the required database is available.
+#' Check Environment
+#'
+#' Check if the required database is available,
 #' otherwise install from remote repository.
+#'
 #' @param x call function.
 #' @return a database connection either connected with local file or remote one.
 #' @importFrom DBI dbConnect
 #' @importFrom duckdb duckdb
+#' @importFrom devtools install_github
 #' @export
 check_environment <- function() {
   local_db_path <- "~/bis620.2023/inst/shinyapp/ctrialsgovdb/ctrialsgov.duckdb"
@@ -16,16 +20,9 @@ check_environment <- function() {
     ))
     # Perform operations with local DuckDB connection
   } else {
-
-    # Local file does not exist, install package from GitHub
-    if (!requireNamespace("devtools", quietly = TRUE)) {
-      install.packages("devtools")
-    }
-
     devtools::install_github("presagia-analytics/ctrialsgov")
 
-    # Load the package after ensuring it's installed
-    library(duckdb)
+    # Load the database after ensuring it's installed
     con <- dbConnect(duckdb(
       file.path("ctrialsgovdb/ctrialsgov.duckdb"),
       read_only = TRUE

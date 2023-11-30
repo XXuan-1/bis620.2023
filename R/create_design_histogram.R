@@ -1,5 +1,7 @@
-#' @title Design Histogram
-#' @description Create a histogram of the intervention study models
+#' Design Histogram
+#'
+#' Create a histogram of the intervention study models.
+#'
 #' @param x the database table.
 #' @param way the filtering choices of allocation ways
 #' @return A histogram for the strategy for assigning interventions

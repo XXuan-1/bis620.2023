@@ -22,7 +22,8 @@ Imports:
   rlang,
   tibble,
   duckdb,
-  DBI
+  DBI,
+  devtools
 Suggests: 
     knitr,
     rmarkdown,

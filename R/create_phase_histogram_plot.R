@@ -1,6 +1,9 @@
 #' @title Phase Histogram
 #' @description Create a histogram of the study phases returned by
-#' a brief title keyword search
+#' Phase Histogram
+#'
+#' Create a histogram of the phases.
+#'
 #' @param d the database table.
 #' @param way the filtering choices of allocation ways
 #' @return A histogram for numerical phases of clinical trials

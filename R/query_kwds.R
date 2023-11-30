@@ -1,5 +1,7 @@
 #' Query keywords from a database table.
-#' filter rows with specific query keywords
+#'
+#' filter rows with specific query keywords.
+#'
 #' @param d the database table.
 #' @param kwds the keywords to look for.
 #' @param column the column to look for the keywords in.
