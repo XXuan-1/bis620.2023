@@ -3,7 +3,6 @@
 #' Check if the required database is available,
 #' otherwise install from remote repository.
 #'
-#' @param x call function.
 #' @return a database connection either connected with local file or remote one.
 #' @importFrom DBI dbConnect
 #' @importFrom duckdb duckdb

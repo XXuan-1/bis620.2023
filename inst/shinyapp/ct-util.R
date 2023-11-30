@@ -34,11 +34,8 @@ check_environment <- function() {
 
     # Load the package after ensuring it's installed
     library(duckdb)
-    con <- dbConnect(
-      duckdb(
-      file.path("ctrialsgovdb/ctrialsgov.duckdb"),
-      read_only = TRUE
-    ))
+    con <- dbConnect(duckdb(file.path("ctrialsgovdb/ctrialsgov.duckdb"),
+                            read_only = TRUE))
     }
 
   # Return any necessary objects or connections

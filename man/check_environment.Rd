@@ -6,9 +6,6 @@
 \usage{
 check_environment()
 }
-\arguments{
-\item{x}{call function.}
-}
 \value{
 a database connection either connected with local file or remote one.
 }
