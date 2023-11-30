@@ -18,7 +18,8 @@
 #' studies' submitted date, etc..
 #' \describe{
 #'   \item{nct_id}{clinical trials id number}
-#'   \item{study_first_submitted_date}{study first submitted date}
+#'   \item{brief_title}{brief title keywords}
+#'   \item{source_class}{sponsor type}
 #' }
 "studies"
 
@@ -44,7 +45,6 @@
 #' ways, intervention model, etc..
 #' \describe{
 #'   \item{nct_id}{clinical trials id number}
-#'   \item{id}{patient id number}
 #'   \item{allocation}{allocation ways, whether or not randomized}
 #'   \item{intervention_model}{intervention model}
 #' }

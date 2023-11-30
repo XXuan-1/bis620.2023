@@ -75,8 +75,7 @@ server <- function(input, output) {
       filter(source_class %in% !!input$source_class)
 
     ret |>
-      head(max_num_studies) |>
-      dplyr::collect()
+      head(max_num_studies)
   })
 
   # output histogram for phases that clinical trials are categorized
@@ -105,7 +104,6 @@ server <- function(input, output) {
     wordcloud_rep(names(v), v, scale = c(4, 0.5), max.words = input$max,
                   colors = RColorBrewer::brewer.pal(8, "Dark2"))
   })
-
 }
 
 # Run the application

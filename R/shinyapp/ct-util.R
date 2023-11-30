@@ -53,7 +53,6 @@ select_colomns <- function(base_data, new_data, colnms) {
 
   new_data |>
     select(nct_id, !!feature) |>
-    collect() |>
     filter(nct_id %in% base_data$nct_id) |>
     distinct() |>
     group_by(nct_id) |>
