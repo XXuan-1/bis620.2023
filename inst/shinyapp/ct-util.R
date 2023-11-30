@@ -1,16 +1,59 @@
-# library(dplyr)
-# library(tidyr)
-# library(purrr)
-# library(DT)
-# library(ggplot2)
-# library(tm)
-# library(wordcloud)
-# library(memoise)
-# library(NLP)
-# library(rlang)
-# library(tidyverse)
-# library(RColorBrewer)
-#
+library(dplyr)
+library(shiny)
+library(duckdb)
+library(tidyr)
+library(purrr)
+library(DT)
+library(ggplot2)
+library(tm)
+library(wordcloud)
+library(memoise)
+library(NLP)
+library(rlang)
+library(tidyverse)
+library(RColorBrewer)
+
+checkAndSetupEnvironment <- function() {
+  local_db_path <- "~/bis620.2023/inst/shinyapp/ctrialsgovdb/ctrialsgov.duckdb"
+
+  if (file.exists(local_db_path)) {
+    # Local file exists, proceed to use it
+    con <- dbConnect(duckdb(
+      file.path(local_db_path),
+      read_only = TRUE
+    ))
+    # Perform operations with local DuckDB connection
+  } else {
+    # Local file does not exist, install package from GitHub
+      if (!requireNamespace("devtools", quietly = TRUE)) {
+        install.packages("devtools")
+      }
+
+    devtools::install_github("presagia-analytics/ctrialsgov")
+
+    # Load the package after ensuring it's installed
+    library(duckdb)
+    con <- dbConnect(duckdb(
+      file.path("ctrialsgovdb/ctrialsgov.duckdb"),
+      read_only = TRUE
+    ))
+    }
+
+  # Return any necessary objects or connections
+  # For example, return the DuckDB connection if needed elsewhere
+  return(con)
+}
+
+if (length(dbListTables(con)) == 0) {
+  stop("Problem reading from connection.")
+}
+
+# Create the connection to a database and "studies", "conditions" and "designs" tables.
+
+studies = tbl(con, "studies")
+conditions = tbl(con, "conditions")
+designs = tbl(con, "designs")
+
 
 #' Query keywords from a database table.
 #' filter rows with specific query keywords
@@ -53,6 +96,7 @@ select_colomns <- function(base_data, new_data, colnms) {
 
   new_data |>
     select(nct_id, !!feature) |>
+    collect() |>
     filter(nct_id %in% base_data$nct_id) |>
     distinct() |>
     group_by(nct_id) |>
@@ -205,10 +249,10 @@ gettermmatrix <- memoise(function(x) {
   x <- as.character(x)
   if (is.character(x)) {
     mycorpus <- Corpus(VectorSource(x))
-    mycorpus <- tm_map(myCorpus, content_transformer(tolower))
-    mycorpus <- tm_map(myCorpus, removePunctuation)
-    mycorpus <- tm_map(myCorpus, removeNumbers)
-    mycorpus <- tm_map(myCorpus, removeWords,
+    mycorpus <- tm_map(mycorpus, content_transformer(tolower))
+    mycorpus <- tm_map(mycorpus, removePunctuation)
+    mycorpus <- tm_map(mycorpus, removeNumbers)
+    mycorpus <- tm_map(mycorpus, removeWords,
                       c(stopwords("SMART"), "thy", "thou", "thee", "the",
                         "and", "but"))
     mydtm <- TermDocumentMatrix(mycorpus,

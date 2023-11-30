@@ -8,6 +8,8 @@
 #
 
 library(shiny)
+library(duckdb)
+library(DBI)
 
 source("ct-util.R")
 max_num_studies <- 1000
@@ -59,6 +61,13 @@ ui <- fluidPage(
 
 # Define server logic required to draw graphs
 server <- function(input, output) {
+  con <- checkAndSetupEnvironment()
+
+  if (is.null(con)) {
+    stop("Database connection not established.")
+  }
+
+  # The rest of your server logic goes here, using 'con'
 
   get_studies <- reactive({
     if (input$brief_title_kw != "") {
@@ -75,7 +84,8 @@ server <- function(input, output) {
       filter(source_class %in% !!input$source_class)
 
     ret |>
-      head(max_num_studies)
+      head(max_num_studies) |>
+      collect()
   })
 
   # output histogram for phases that clinical trials are categorized
