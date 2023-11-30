@@ -28,16 +28,17 @@ check_environment <- function() {
     # Local file does not exist, install package from GitHub
     if (!requireNamespace("devtools", quietly = TRUE)) {
       install.packages("devtools")
-     }
+    }
 
     devtools::install_github("presagia-analytics/ctrialsgov")
 
     # Load the package after ensuring it's installed
     library(duckdb)
-    con <- dbConnect(duckdb(
+    con <- dbConnect(
+      duckdb(
       file.path("ctrialsgovdb/ctrialsgov.duckdb"),
       read_only = TRUE
-      ))
+    ))
     }
 
   # Return any necessary objects or connections
@@ -256,7 +257,7 @@ gettermmatrix <- memoise(function(x) {
     mycorpus <- tm_map(mycorpus, removeNumbers)
     mycorpus <- tm_map(mycorpus, removeWords,
                        c(stopwords("SMART"), "thy", "thou", "thee", "the",
-                        "and", "but"))
+                         "and", "but"))
     mydtm <- TermDocumentMatrix(mycorpus,
                                 control = list(minWordLength = 1))
     m <- as.matrix(mydtm)
